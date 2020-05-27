@@ -17,3 +17,7 @@ set(HEADERS
 
 # On indique que l'on veut un exécutable "hello" compilé à partir des fichiers décrits par les variables SRCS et HEADERS
 add_executable(game_engine ${SRCS} ${HEADERS})
+
+# Library linkage
+find_library(LIB_LOCATION NAMES Lua52 PATHS lib)
+target_link_libraries(game_engine ${LIB_LOCATION})
