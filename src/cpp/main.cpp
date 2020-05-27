@@ -1,36 +1,24 @@
+// main.cpp
+extern "C" {
+#include "lauxlib.h"
+#include "lua.h"
+#include "lualib.h"
+}
+
+#include <LuaBridge/LuaBridge.h>
+
 #include <iostream>
 
-#include "../inc/ServiceLocator.hpp"
-
-int main(int argc, char* argv[]) {
-  std::cout << "Building the FileManager..."
-            << "\n";
-  FileManager* fm = new FileManager();
-
-  std::cout << "Building the ServiceLocator..."
-            << "\n";
-  ServiceLocator::provide(fm);
-
-  std::cout << "Getting the FileManager through ServiceLocator..."
-            << "\n";
-
-  FileService* fm_from_sl = ServiceLocator::File();
-
-  std::cout << "Opening a test output file..."
-            << "\n";
-  FileID fid = fm_from_sl->open_o("data/test_o.txt");
-  std::cout << "Successfully opened a file. id:" << fid << "\n";
-
-  std::cout << "Writing stuff..."
-            << "\n";
-  std::ofstream* fstr = fm_from_sl->query_o(fid);
-  (*fstr) << "This is a final test message."
-          << "\n";
-
-  std::cout << "Finished."
-            << "\n";
-
-  delete fm;
-
-  return 0;
+using namespace luabridge;
+int main() {
+  lua_State* L = luaL_newstate();
+  luaL_dofile(L, "data/scripts/script.lua");
+  luaL_openlibs(L);
+  lua_pcall(L, 0, 0, 0);
+  LuaRef s = getGlobal(L, "testString");
+  LuaRef n = getGlobal(L, "number");
+  std::string luaString = s.cast<std::string>();
+  int answer = n.cast<int>();
+  std::cout << luaString << std::endl;
+  std::cout << "And here's our number:" << answer << std::endl;
 }
