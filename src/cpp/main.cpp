@@ -1,24 +1,20 @@
-// main.cpp
-extern "C" {
-#include "lauxlib.h"
-#include "lua.h"
-#include "lualib.h"
-}
-
-#include <LuaBridge/LuaBridge.h>
-
 #include <iostream>
 
+#include "../inc/TransformComponent.hpp"
+
 using namespace luabridge;
+
 int main() {
   lua_State* L = luaL_newstate();
-  luaL_dofile(L, "data/scripts/script.lua");
+  luaL_dofile(L, "assets/scripts/test_transform.lua");
   luaL_openlibs(L);
   lua_pcall(L, 0, 0, 0);
-  LuaRef s = getGlobal(L, "testString");
-  LuaRef n = getGlobal(L, "number");
-  std::string luaString = s.cast<std::string>();
-  int answer = n.cast<int>();
-  std::cout << luaString << std::endl;
-  std::cout << "And here's our number:" << answer << std::endl;
+
+  LuaRef comp = getGlobal(L, "TransformComponent");
+
+  TransformComponent t(comp);
+  std::cout << t << "\n";
+  t.scale(Vector2D(2, 2));
+  std::cout << t << "\n";
+  return 0;
 }

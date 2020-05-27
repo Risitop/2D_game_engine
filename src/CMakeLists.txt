@@ -6,13 +6,19 @@ project(game_engine)
 
 # Crée des variables avec les fichiers à compiler
 set(SRCS
-    cpp/main.cpp
     cpp/FileManager.cpp
+    cpp/main.cpp
+    cpp/TransformComponent.cpp
+    cpp/Vector2D.cpp
     )
     
 set(HEADERS
+    inc/Component.hpp
     inc/FileManager.hpp
+    inc/Geometry.hpp
     inc/ServiceLocator.hpp
+    inc/TransformComponent.hpp
+    inc/Vector2D.hpp
     )
 
 # On indique que l'on veut un exécutable "hello" compilé à partir des fichiers décrits par les variables SRCS et HEADERS
