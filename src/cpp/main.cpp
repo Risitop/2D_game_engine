@@ -1,20 +1,18 @@
 #include <iostream>
 
-#include "../inc/TransformComponent.hpp"
+#include "../inc/RenderComponent.hpp"
 
 using namespace luabridge;
 
 int main() {
   lua_State* L = luaL_newstate();
-  luaL_dofile(L, "assets/scripts/test_transform.lua");
+  luaL_dofile(L, "assets/scripts/test_render.lua");
   luaL_openlibs(L);
   lua_pcall(L, 0, 0, 0);
 
-  LuaRef comp = getGlobal(L, "TransformComponent");
+  LuaRef comp = getGlobal(L, "RenderComponent");
 
-  TransformComponent t(comp);
-  std::cout << t << "\n";
-  t.scale(Vector2D(2, 2));
+  RenderComponent t(comp);
   std::cout << t << "\n";
   return 0;
 }

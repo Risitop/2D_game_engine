@@ -150,6 +150,33 @@ cpp/FileManager.cpp.s:
 	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/FileManager.cpp.s
 .PHONY : cpp/FileManager.cpp.s
 
+cpp/RenderComponent.o: cpp/RenderComponent.cpp.o
+
+.PHONY : cpp/RenderComponent.o
+
+# target to build an object file
+cpp/RenderComponent.cpp.o:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/RenderComponent.cpp.o
+.PHONY : cpp/RenderComponent.cpp.o
+
+cpp/RenderComponent.i: cpp/RenderComponent.cpp.i
+
+.PHONY : cpp/RenderComponent.i
+
+# target to preprocess a source file
+cpp/RenderComponent.cpp.i:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/RenderComponent.cpp.i
+.PHONY : cpp/RenderComponent.cpp.i
+
+cpp/RenderComponent.s: cpp/RenderComponent.cpp.s
+
+.PHONY : cpp/RenderComponent.s
+
+# target to generate assembly for a file
+cpp/RenderComponent.cpp.s:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/RenderComponent.cpp.s
+.PHONY : cpp/RenderComponent.cpp.s
+
 cpp/TransformComponent.o: cpp/TransformComponent.cpp.o
 
 .PHONY : cpp/TransformComponent.o
@@ -243,6 +270,9 @@ help:
 	@echo "... cpp/FileManager.o"
 	@echo "... cpp/FileManager.i"
 	@echo "... cpp/FileManager.s"
+	@echo "... cpp/RenderComponent.o"
+	@echo "... cpp/RenderComponent.i"
+	@echo "... cpp/RenderComponent.s"
 	@echo "... cpp/TransformComponent.o"
 	@echo "... cpp/TransformComponent.i"
 	@echo "... cpp/TransformComponent.s"
