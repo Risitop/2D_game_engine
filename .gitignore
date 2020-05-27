@@ -1,0 +1,7 @@
+GPATH
+GRTAGS
+GTAGS
+src/CMakeCache.txt
+src/cmake_install.cmake
+src/game_engine
+src/CMakeFiles
