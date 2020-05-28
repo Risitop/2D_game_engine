@@ -123,6 +123,33 @@ game_engine/fast:
 	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/build
 .PHONY : game_engine/fast
 
+cpp/AnimatedComponent.o: cpp/AnimatedComponent.cpp.o
+
+.PHONY : cpp/AnimatedComponent.o
+
+# target to build an object file
+cpp/AnimatedComponent.cpp.o:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/AnimatedComponent.cpp.o
+.PHONY : cpp/AnimatedComponent.cpp.o
+
+cpp/AnimatedComponent.i: cpp/AnimatedComponent.cpp.i
+
+.PHONY : cpp/AnimatedComponent.i
+
+# target to preprocess a source file
+cpp/AnimatedComponent.cpp.i:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/AnimatedComponent.cpp.i
+.PHONY : cpp/AnimatedComponent.cpp.i
+
+cpp/AnimatedComponent.s: cpp/AnimatedComponent.cpp.s
+
+.PHONY : cpp/AnimatedComponent.s
+
+# target to generate assembly for a file
+cpp/AnimatedComponent.cpp.s:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/AnimatedComponent.cpp.s
+.PHONY : cpp/AnimatedComponent.cpp.s
+
 cpp/FileManager.o: cpp/FileManager.cpp.o
 
 .PHONY : cpp/FileManager.o
@@ -267,6 +294,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... game_engine"
+	@echo "... cpp/AnimatedComponent.o"
+	@echo "... cpp/AnimatedComponent.i"
+	@echo "... cpp/AnimatedComponent.s"
 	@echo "... cpp/FileManager.o"
 	@echo "... cpp/FileManager.i"
 	@echo "... cpp/FileManager.s"

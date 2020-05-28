@@ -6,6 +6,7 @@ project(game_engine)
 
 # Crée des variables avec les fichiers à compiler
 set(SRCS
+    cpp/AnimatedComponent.cpp
     cpp/FileManager.cpp
     cpp/main.cpp
     cpp/RenderComponent.cpp
@@ -14,6 +15,7 @@ set(SRCS
     )
     
 set(HEADERS
+    inc/AnimatedComponent.hpp
     inc/Component.hpp
     inc/FileManager.hpp
     inc/Geometry.hpp
