@@ -7,9 +7,8 @@
 #define CT_TRANSFORM 2
 
 class TransformComponent : public Component {
-  static const ComponentType ID = CT_TRANSFORM;
-
  public:
+  static const ComponentType ID = CT_TRANSFORM;
   //! Default constructor
   TransformComponent();
   TransformComponent(float x, float y);

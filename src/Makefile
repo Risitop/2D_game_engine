@@ -150,6 +150,33 @@ cpp/AnimatedComponent.cpp.s:
 	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/AnimatedComponent.cpp.s
 .PHONY : cpp/AnimatedComponent.cpp.s
 
+cpp/ComponentHandler.o: cpp/ComponentHandler.cpp.o
+
+.PHONY : cpp/ComponentHandler.o
+
+# target to build an object file
+cpp/ComponentHandler.cpp.o:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/ComponentHandler.cpp.o
+.PHONY : cpp/ComponentHandler.cpp.o
+
+cpp/ComponentHandler.i: cpp/ComponentHandler.cpp.i
+
+.PHONY : cpp/ComponentHandler.i
+
+# target to preprocess a source file
+cpp/ComponentHandler.cpp.i:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/ComponentHandler.cpp.i
+.PHONY : cpp/ComponentHandler.cpp.i
+
+cpp/ComponentHandler.s: cpp/ComponentHandler.cpp.s
+
+.PHONY : cpp/ComponentHandler.s
+
+# target to generate assembly for a file
+cpp/ComponentHandler.cpp.s:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/ComponentHandler.cpp.s
+.PHONY : cpp/ComponentHandler.cpp.s
+
 cpp/FileManager.o: cpp/FileManager.cpp.o
 
 .PHONY : cpp/FileManager.o
@@ -297,6 +324,9 @@ help:
 	@echo "... cpp/AnimatedComponent.o"
 	@echo "... cpp/AnimatedComponent.i"
 	@echo "... cpp/AnimatedComponent.s"
+	@echo "... cpp/ComponentHandler.o"
+	@echo "... cpp/ComponentHandler.i"
+	@echo "... cpp/ComponentHandler.s"
 	@echo "... cpp/FileManager.o"
 	@echo "... cpp/FileManager.i"
 	@echo "... cpp/FileManager.s"
