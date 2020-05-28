@@ -27,8 +27,6 @@ int main() {
   TransformComponent* transform_comp =
       ch.addComponent<TransformComponent>(transform_obj);
 
-  std::cout << "Component added."
-            << "\n";
   std::cout << *animated_comp << "\n";
   std::cout << *render_comp << "\n";
   std::cout << *transform_comp << "\n";
