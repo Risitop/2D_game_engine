@@ -13,9 +13,8 @@
  * A drawable component contains information about texturing a sprite
  */
 class RenderComponent : public Component {
-  static const ComponentType ID = CT_DRAWABLE;
-
  public:
+  static const ComponentType ID = CT_DRAWABLE;
   //! Default constructor
   RenderComponent();
   RenderComponent(sf::Texture* texture);

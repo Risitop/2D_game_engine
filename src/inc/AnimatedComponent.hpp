@@ -15,9 +15,8 @@
 typedef unsigned int uint;
 
 class AnimatedComponent : public Component {
-  static const ComponentType ID = CT_ANIMATED;
-
  public:
+  static const ComponentType ID = CT_ANIMATED;
   //! Default constructor
   AnimatedComponent();
 

@@ -14,9 +14,9 @@ extern "C" {
  * This is the common interface to all components.
  */
 class Component {
+ public:
   static const ComponentType ID;
 
- public:
   //! Default constructor
   Component() {}
 
