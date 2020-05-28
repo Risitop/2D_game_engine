@@ -4,10 +4,10 @@
 #include "Geometry.hpp"
 #include "Vector2D.hpp"
 
-#define T_TRANSFORMCOMPONENT 2
+#define CT_TRANSFORM 2
 
 class TransformComponent : public Component {
-  static const ComponentType ID = T_TRANSFORMCOMPONENT;
+  static const ComponentType ID = CT_TRANSFORM;
 
  public:
   //! Default constructor
