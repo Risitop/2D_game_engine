@@ -1,6 +1,6 @@
 #include "../inc/EntityHandler.hpp"
 
-EntityHandler::EntityHandler(lua_State* L) : m_lua_state(L) {}
+EntityHandler::EntityHandler() {}
 
 EntityHandler::~EntityHandler() noexcept {
   std::cout << "Entity handler destructor."
@@ -13,24 +13,25 @@ EntityHandler::~EntityHandler() noexcept {
 }
 
 EntityID EntityHandler::addEntity(luabridge::LuaRef& object) {
+  lua_State* lua_state = object.state();
   Entity* entity = new Entity();
   EntityID new_id = m_map.insert(entity);
   entity->id = new_id;
   entity->active = true;
-  object.push(m_lua_state);
-  luabridge::push(m_lua_state, luabridge::Nil());
+  object.push(lua_state);
+  luabridge::push(lua_state, luabridge::Nil());
 
   // We extract all components and add them to the new entity
-  while (lua_next(m_lua_state, -2)) {
-    luabridge::LuaRef comp_type = luabridge::LuaRef::fromStack(m_lua_state, -2);
-    luabridge::LuaRef comp_obj = luabridge::LuaRef::fromStack(m_lua_state, -1);
+  while (lua_next(lua_state, -2)) {
+    luabridge::LuaRef comp_type = luabridge::LuaRef::fromStack(lua_state, -2);
+    luabridge::LuaRef comp_obj = luabridge::LuaRef::fromStack(lua_state, -1);
     std::string comp_type_s = comp_type.cast<std::string>();
     ComponentID comp_id =
         m_component_handler.addComponent(comp_type_s, comp_obj);
     Component* comp = m_component_handler.getComponent(comp_id);
     entity->components.push_back(comp);
     entity->component_ids.push_back(comp_id);
-    lua_pop(m_lua_state, 1);
+    lua_pop(lua_state, 1);
   }
 
   object.pop();

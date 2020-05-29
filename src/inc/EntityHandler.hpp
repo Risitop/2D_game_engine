@@ -15,7 +15,7 @@ struct Entity {
 class EntityHandler {
  public:
   //! Default constructor
-  EntityHandler(lua_State *L);
+  EntityHandler();
 
   //! Copy constructor
   EntityHandler(const EntityHandler &other) = delete;
@@ -39,6 +39,5 @@ class EntityHandler {
  protected:
  private:
   SmartMap<EntityID, Entity *> m_map;
-  lua_State *m_lua_state;
   ComponentHandler m_component_handler;
 };
