@@ -40,4 +40,5 @@ class EntityHandler {
  private:
   SmartMap<EntityID, Entity *> m_map;
   ComponentHandler m_component_handler;
+  void freeEntity(EntityID id);
 };

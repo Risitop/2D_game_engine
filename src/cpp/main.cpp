@@ -18,8 +18,12 @@ int main() {
     e_ids.push_back(eh->addEntity(s));
   }
 
+  std::cout << "Deleting EntityHandler..."
+            << "\n";
+
   delete eh;
 
+  std::cout << "Closing lua state...";
   lua_close(L);
 
   std::cout << "Program ended."
