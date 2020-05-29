@@ -8,6 +8,7 @@ project(game_engine)
 set(SRCS
     cpp/AnimatedComponent.cpp
     cpp/ComponentHandler.cpp
+    cpp/EntityHandler.cpp
     cpp/FileManager.cpp
     cpp/main.cpp
     cpp/RenderComponent.cpp
@@ -19,10 +20,12 @@ set(HEADERS
     inc/AnimatedComponent.hpp
     inc/Component.hpp
     inc/ComponentHandler.hpp
+    inc/EntityHandler.hpp
     inc/FileManager.hpp
     inc/Geometry.hpp
     inc/ServiceLocator.hpp
     inc/RenderComponent.hpp
+    inc/SmartMap.hpp
     inc/TransformComponent.hpp
     inc/Vector2D.hpp
     )

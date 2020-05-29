@@ -1,6 +1,7 @@
 #pragma once
 
 typedef unsigned int ComponentType;
+typedef unsigned int ComponentID;
 
 extern "C" {
 #include "lauxlib.h"
@@ -10,15 +11,19 @@ extern "C" {
 
 #include <LuaBridge/LuaBridge.h>
 
+class ComponentHandler;
+
 /*
  * This is the common interface to all components.
  */
 class Component {
+  friend class ComponentHandler;
+
  public:
   static const ComponentType ID;
 
   //! Default constructor
-  Component() {}
+  Component() : m_id(0) {}
 
   //! Copy constructor
   Component(const Component &other) {}
@@ -41,8 +46,13 @@ class Component {
   //! Load
   void loadFromLua(luabridge::LuaRef &object) {}
 
+  ComponentID id() { return m_id; }
+
  protected:
+  void setId(ComponentID id) { m_id = id; }
+
  private:
+  ComponentID m_id;
 };
 
 std::ostream &operator<<(std::ostream &stream, const Component &component);

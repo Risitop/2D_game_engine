@@ -1,25 +1,29 @@
 #include <iostream>
 
-#include "../inc/SmartMap.hpp"
+#include "../inc/EntityHandler.hpp"
 
 typedef unsigned int EntityID;
 
 int main() {
-  SmartMap<EntityID, int> s;
-  s.insert(0);
-  s.insert(1);
-  s.insert(2);
-  s.insert(3);
-  s.insert(4);
-  s.remove(3);
-  s.remove(1);
-  s.insert(5);
-  s.insert(6);
+  lua_State* L = luaL_newstate();
+  luaL_dofile(L, "assets/scripts/test_components.lua");
+  luaL_openlibs(L);
+  lua_pcall(L, 0, 0, 0);
+  luabridge::LuaRef s = luabridge::getGlobal(L, "GameObject");
 
-  std::map<EntityID, int>::iterator it;
-  for (it = s.begin(); it != s.end(); it++) {
-    std::cout << it->first << "->" << it->second << "\n";
+  EntityHandler* eh = new EntityHandler(L);
+
+  std::vector<EntityID> e_ids;
+  for (int i = 0; i < 500; i++) {
+    e_ids.push_back(eh->addEntity(s));
   }
+
+  lua_close(L);
+
+  delete eh;
+
+  std::cout << "Program ended."
+            << "\n";
 
   return 0;
 }

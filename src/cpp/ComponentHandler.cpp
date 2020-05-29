@@ -1,19 +1,32 @@
 #include "../inc/ComponentHandler.hpp"
 
-ComponentHandler::ComponentHandler() {}
+ComponentHandler::ComponentHandler() {
+  // Initializing the lookup table
+  m_s2c["AnimatedComponent"] = AnimatedComponent::ID;
+  m_s2c["RenderComponent"] = RenderComponent::ID;
+  m_s2c["TransformComponent"] = TransformComponent::ID;
+}
 
 ComponentHandler::~ComponentHandler() noexcept {
   for (size_t id = 0; id < m_components.size(); id++) {
-    for (size_t j = 0; j < m_components[id]->size(); j++) {
-      delete (*m_components[id])[j];
+    SmartMap<ComponentID, Component*>* map_components = m_components[id];
+    std::map<ComponentID, Component*>::iterator it;
+    for (it = map_components->begin(); it != map_components->end(); it++) {
+      delete it->second;
     }
-    delete m_components[id];
+    delete map_components;
+  }
+
+  std::map<ComponentID, ComponentPosition*>::iterator it;
+  for (it = m_comp_pos.begin(); it != m_comp_pos.end(); it++) {
+    delete it->second;
   }
 }
 
 void ComponentHandler::checkComponentType(ComponentType type) {
   while (m_components.size() <= type) {
-    std::vector<Component*>* arr = new std::vector<Component*>;
+    SmartMap<ComponentID, Component*>* arr =
+        new SmartMap<ComponentID, Component*>;
     m_components.push_back(arr);
   }
 }

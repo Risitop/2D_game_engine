@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <iterator>
 #include <map>
 #include <vector>
@@ -47,6 +48,10 @@ class SmartMap {
   }
 
   void remove(K key) {
+    typename std::map<K, V>::iterator it = m_map.find(key);
+    if (it == m_map.end()) {
+      throw "Unknown key.";
+    }
     m_n_elements--;
     m_free_keys.push_back(key);
     m_map.erase(key);

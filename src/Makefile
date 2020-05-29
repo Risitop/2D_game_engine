@@ -177,6 +177,33 @@ cpp/ComponentHandler.cpp.s:
 	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/ComponentHandler.cpp.s
 .PHONY : cpp/ComponentHandler.cpp.s
 
+cpp/EntityHandler.o: cpp/EntityHandler.cpp.o
+
+.PHONY : cpp/EntityHandler.o
+
+# target to build an object file
+cpp/EntityHandler.cpp.o:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/EntityHandler.cpp.o
+.PHONY : cpp/EntityHandler.cpp.o
+
+cpp/EntityHandler.i: cpp/EntityHandler.cpp.i
+
+.PHONY : cpp/EntityHandler.i
+
+# target to preprocess a source file
+cpp/EntityHandler.cpp.i:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/EntityHandler.cpp.i
+.PHONY : cpp/EntityHandler.cpp.i
+
+cpp/EntityHandler.s: cpp/EntityHandler.cpp.s
+
+.PHONY : cpp/EntityHandler.s
+
+# target to generate assembly for a file
+cpp/EntityHandler.cpp.s:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/EntityHandler.cpp.s
+.PHONY : cpp/EntityHandler.cpp.s
+
 cpp/FileManager.o: cpp/FileManager.cpp.o
 
 .PHONY : cpp/FileManager.o
@@ -327,6 +354,9 @@ help:
 	@echo "... cpp/ComponentHandler.o"
 	@echo "... cpp/ComponentHandler.i"
 	@echo "... cpp/ComponentHandler.s"
+	@echo "... cpp/EntityHandler.o"
+	@echo "... cpp/EntityHandler.i"
+	@echo "... cpp/EntityHandler.s"
 	@echo "... cpp/FileManager.o"
 	@echo "... cpp/FileManager.i"
 	@echo "... cpp/FileManager.s"
