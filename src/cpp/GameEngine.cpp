@@ -17,18 +17,19 @@ GameEngine::~GameEngine() noexcept {
   lua_close(m_lua_state);
 }
 
-void GameEngine::initialize(const std::string& config_path) {}
+void GameEngine::initialize(const std::string& config_path) {
+  m_texture_handler->addAtlas("assets/graphics/hero.png", 0);
+}
 
 int GameEngine::main_loop() {
-  luaL_dofile(m_lua_state, "assets/scripts/test_components.lua");
+  luaL_dofile(m_lua_state, "assets/entities/hero.lua");
   luaL_openlibs(m_lua_state);
   lua_pcall(m_lua_state, 0, 0, 0);
-  luabridge::LuaRef s = luabridge::getGlobal(m_lua_state, "GameObject");
+  luabridge::LuaRef entity = luabridge::getGlobal(m_lua_state, "Entity");
 
-  std::vector<EntityID> e_ids;
-  for (int i = 0; i < 10; i++) {
-    e_ids.push_back(m_entity_handler->addEntity(s));
-  }
+  std::cout << "Loading entity hero..."
+            << "\n";
+  EntityID e_id = m_entity_handler->addEntity(entity);
 
   std::cout << "Deleting EntityHandler..."
             << "\n";
