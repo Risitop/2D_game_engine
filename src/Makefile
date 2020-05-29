@@ -231,6 +231,33 @@ cpp/FileManager.cpp.s:
 	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/FileManager.cpp.s
 .PHONY : cpp/FileManager.cpp.s
 
+cpp/GameEngine.o: cpp/GameEngine.cpp.o
+
+.PHONY : cpp/GameEngine.o
+
+# target to build an object file
+cpp/GameEngine.cpp.o:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/GameEngine.cpp.o
+.PHONY : cpp/GameEngine.cpp.o
+
+cpp/GameEngine.i: cpp/GameEngine.cpp.i
+
+.PHONY : cpp/GameEngine.i
+
+# target to preprocess a source file
+cpp/GameEngine.cpp.i:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/GameEngine.cpp.i
+.PHONY : cpp/GameEngine.cpp.i
+
+cpp/GameEngine.s: cpp/GameEngine.cpp.s
+
+.PHONY : cpp/GameEngine.s
+
+# target to generate assembly for a file
+cpp/GameEngine.cpp.s:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/GameEngine.cpp.s
+.PHONY : cpp/GameEngine.cpp.s
+
 cpp/RenderComponent.o: cpp/RenderComponent.cpp.o
 
 .PHONY : cpp/RenderComponent.o
@@ -257,6 +284,60 @@ cpp/RenderComponent.s: cpp/RenderComponent.cpp.s
 cpp/RenderComponent.cpp.s:
 	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/RenderComponent.cpp.s
 .PHONY : cpp/RenderComponent.cpp.s
+
+cpp/ServiceLocator.o: cpp/ServiceLocator.cpp.o
+
+.PHONY : cpp/ServiceLocator.o
+
+# target to build an object file
+cpp/ServiceLocator.cpp.o:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/ServiceLocator.cpp.o
+.PHONY : cpp/ServiceLocator.cpp.o
+
+cpp/ServiceLocator.i: cpp/ServiceLocator.cpp.i
+
+.PHONY : cpp/ServiceLocator.i
+
+# target to preprocess a source file
+cpp/ServiceLocator.cpp.i:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/ServiceLocator.cpp.i
+.PHONY : cpp/ServiceLocator.cpp.i
+
+cpp/ServiceLocator.s: cpp/ServiceLocator.cpp.s
+
+.PHONY : cpp/ServiceLocator.s
+
+# target to generate assembly for a file
+cpp/ServiceLocator.cpp.s:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/ServiceLocator.cpp.s
+.PHONY : cpp/ServiceLocator.cpp.s
+
+cpp/TextureHandler.o: cpp/TextureHandler.cpp.o
+
+.PHONY : cpp/TextureHandler.o
+
+# target to build an object file
+cpp/TextureHandler.cpp.o:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/TextureHandler.cpp.o
+.PHONY : cpp/TextureHandler.cpp.o
+
+cpp/TextureHandler.i: cpp/TextureHandler.cpp.i
+
+.PHONY : cpp/TextureHandler.i
+
+# target to preprocess a source file
+cpp/TextureHandler.cpp.i:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/TextureHandler.cpp.i
+.PHONY : cpp/TextureHandler.cpp.i
+
+cpp/TextureHandler.s: cpp/TextureHandler.cpp.s
+
+.PHONY : cpp/TextureHandler.s
+
+# target to generate assembly for a file
+cpp/TextureHandler.cpp.s:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/TextureHandler.cpp.s
+.PHONY : cpp/TextureHandler.cpp.s
 
 cpp/TransformComponent.o: cpp/TransformComponent.cpp.o
 
@@ -360,9 +441,18 @@ help:
 	@echo "... cpp/FileManager.o"
 	@echo "... cpp/FileManager.i"
 	@echo "... cpp/FileManager.s"
+	@echo "... cpp/GameEngine.o"
+	@echo "... cpp/GameEngine.i"
+	@echo "... cpp/GameEngine.s"
 	@echo "... cpp/RenderComponent.o"
 	@echo "... cpp/RenderComponent.i"
 	@echo "... cpp/RenderComponent.s"
+	@echo "... cpp/ServiceLocator.o"
+	@echo "... cpp/ServiceLocator.i"
+	@echo "... cpp/ServiceLocator.s"
+	@echo "... cpp/TextureHandler.o"
+	@echo "... cpp/TextureHandler.i"
+	@echo "... cpp/TextureHandler.s"
 	@echo "... cpp/TransformComponent.o"
 	@echo "... cpp/TransformComponent.i"
 	@echo "... cpp/TransformComponent.s"

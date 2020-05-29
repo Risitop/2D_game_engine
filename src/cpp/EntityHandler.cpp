@@ -3,11 +3,8 @@
 EntityHandler::EntityHandler() {}
 
 EntityHandler::~EntityHandler() noexcept {
-  std::cout << "Entity handler destructor."
-            << "\n";
   std::map<EntityID, Entity*>::iterator it;
   for (it = m_map.begin(); it != m_map.end(); it++) {
-    std::cout << "Removing entity " << it->second->id << "\n";
     freeEntity(it->second->id);
   }
 }
@@ -44,14 +41,11 @@ Entity* EntityHandler::getEntity(EntityID id) { return m_map.get(id); }
 void EntityHandler::removeEntity(EntityID id) {
   m_map.remove(id);
   freeEntity(id);
-  std::cout << "Entity " << id << " removed."
-            << "\n";
 }
 
 void EntityHandler::freeEntity(EntityID id) {
   Entity* entity = getEntity(id);
   for (ComponentID& component_id : entity->component_ids) {
-    std::cout << "Removing component " << component_id << "\n";
     m_component_handler.removeComponent(component_id);
   }
   delete entity;

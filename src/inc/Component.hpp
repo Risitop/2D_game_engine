@@ -3,13 +3,7 @@
 typedef unsigned int ComponentType;
 typedef unsigned int ComponentID;
 
-extern "C" {
-#include "lauxlib.h"
-#include "lua.h"
-#include "lualib.h"
-}
-
-#include <LuaBridge/LuaBridge.h>
+#include "Lua.hpp"
 
 class ComponentHandler;
 

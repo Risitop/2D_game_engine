@@ -10,8 +10,11 @@ set(SRCS
     cpp/ComponentHandler.cpp
     cpp/EntityHandler.cpp
     cpp/FileManager.cpp
+    cpp/GameEngine.cpp
     cpp/main.cpp
     cpp/RenderComponent.cpp
+    cpp/ServiceLocator.cpp
+    cpp/TextureHandler.cpp
     cpp/TransformComponent.cpp
     cpp/Vector2D.cpp
     )
@@ -22,10 +25,12 @@ set(HEADERS
     inc/ComponentHandler.hpp
     inc/EntityHandler.hpp
     inc/FileManager.hpp
+    inc/GameEngine.hpp
     inc/Geometry.hpp
     inc/ServiceLocator.hpp
     inc/RenderComponent.hpp
     inc/SmartMap.hpp
+    inc/TextureHandler.hpp
     inc/TransformComponent.hpp
     inc/Vector2D.hpp
     )
