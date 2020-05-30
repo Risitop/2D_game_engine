@@ -15,7 +15,7 @@ class RenderSystemEntity : public SystemEntity {
       : m_render(render), m_transform(transform), m_animated(animated) {}
 
   //! Copy constructor
-  RenderSystemEntity(const RenderSystemEntity &other);
+  RenderSystemEntity(const RenderSystemEntity &other) = delete;  // TODO
 
   //! Move constructor
   RenderSystemEntity(RenderSystemEntity &&other) noexcept = delete;

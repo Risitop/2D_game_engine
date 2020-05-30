@@ -1,5 +1,6 @@
 #pragma once
 
+#include "EventHandler.hpp"
 #include "FileManager.hpp"
 #include "TextureHandler.hpp"
 
@@ -13,7 +14,11 @@ class ServiceLocator {
   }
   static TextureHandler* Texture() { return m_texture; }
 
+  static void provide(EventHandler* event_service) { m_event = event_service; }
+  static EventHandler* Event() { return m_event; }
+
  private:
   static FileService* m_file;
   static TextureHandler* m_texture;
+  static EventHandler* m_event;
 };

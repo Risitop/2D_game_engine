@@ -1,6 +1,8 @@
 #pragma once
 
+#include "Application.hpp"
 #include "EntityHandler.hpp"
+#include "EventHandler.hpp"
 #include "ServiceLocator.hpp"
 #include "SystemHandler.hpp"
 
@@ -29,6 +31,8 @@ class GameEngine {
 
  protected:
  private:
+  Application m_application;
+  EventHandler m_event_handler;
   TextureHandler m_texture_handler;
   EntityHandler m_entity_handler;
   SystemHandler m_system_handler;

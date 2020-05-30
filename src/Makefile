@@ -150,6 +150,33 @@ cpp/AnimatedComponent.cpp.s:
 	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/AnimatedComponent.cpp.s
 .PHONY : cpp/AnimatedComponent.cpp.s
 
+cpp/Application.o: cpp/Application.cpp.o
+
+.PHONY : cpp/Application.o
+
+# target to build an object file
+cpp/Application.cpp.o:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/Application.cpp.o
+.PHONY : cpp/Application.cpp.o
+
+cpp/Application.i: cpp/Application.cpp.i
+
+.PHONY : cpp/Application.i
+
+# target to preprocess a source file
+cpp/Application.cpp.i:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/Application.cpp.i
+.PHONY : cpp/Application.cpp.i
+
+cpp/Application.s: cpp/Application.cpp.s
+
+.PHONY : cpp/Application.s
+
+# target to generate assembly for a file
+cpp/Application.cpp.s:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/Application.cpp.s
+.PHONY : cpp/Application.cpp.s
+
 cpp/ComponentHandler.o: cpp/ComponentHandler.cpp.o
 
 .PHONY : cpp/ComponentHandler.o
@@ -203,6 +230,33 @@ cpp/EntityHandler.s: cpp/EntityHandler.cpp.s
 cpp/EntityHandler.cpp.s:
 	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/EntityHandler.cpp.s
 .PHONY : cpp/EntityHandler.cpp.s
+
+cpp/EventHandler.o: cpp/EventHandler.cpp.o
+
+.PHONY : cpp/EventHandler.o
+
+# target to build an object file
+cpp/EventHandler.cpp.o:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/EventHandler.cpp.o
+.PHONY : cpp/EventHandler.cpp.o
+
+cpp/EventHandler.i: cpp/EventHandler.cpp.i
+
+.PHONY : cpp/EventHandler.i
+
+# target to preprocess a source file
+cpp/EventHandler.cpp.i:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/EventHandler.cpp.i
+.PHONY : cpp/EventHandler.cpp.i
+
+cpp/EventHandler.s: cpp/EventHandler.cpp.s
+
+.PHONY : cpp/EventHandler.s
+
+# target to generate assembly for a file
+cpp/EventHandler.cpp.s:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/EventHandler.cpp.s
+.PHONY : cpp/EventHandler.cpp.s
 
 cpp/FileManager.o: cpp/FileManager.cpp.o
 
@@ -459,12 +513,18 @@ help:
 	@echo "... cpp/AnimatedComponent.o"
 	@echo "... cpp/AnimatedComponent.i"
 	@echo "... cpp/AnimatedComponent.s"
+	@echo "... cpp/Application.o"
+	@echo "... cpp/Application.i"
+	@echo "... cpp/Application.s"
 	@echo "... cpp/ComponentHandler.o"
 	@echo "... cpp/ComponentHandler.i"
 	@echo "... cpp/ComponentHandler.s"
 	@echo "... cpp/EntityHandler.o"
 	@echo "... cpp/EntityHandler.i"
 	@echo "... cpp/EntityHandler.s"
+	@echo "... cpp/EventHandler.o"
+	@echo "... cpp/EventHandler.i"
+	@echo "... cpp/EventHandler.s"
 	@echo "... cpp/FileManager.o"
 	@echo "... cpp/FileManager.i"
 	@echo "... cpp/FileManager.s"
