@@ -2,6 +2,7 @@
 
 #include "EntityHandler.hpp"
 #include "ServiceLocator.hpp"
+#include "SystemHandler.hpp"
 
 class GameEngine {
  public:
@@ -28,8 +29,9 @@ class GameEngine {
 
  protected:
  private:
-  TextureHandler *m_texture_handler;
-  EntityHandler *m_entity_handler;
-  FileManager *m_file_manager;
+  TextureHandler m_texture_handler;
+  EntityHandler m_entity_handler;
+  SystemHandler m_system_handler;
+  FileManager m_file_manager;
   lua_State *m_lua_state;
 };

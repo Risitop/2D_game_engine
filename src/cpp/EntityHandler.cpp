@@ -1,6 +1,6 @@
 #include "../inc/EntityHandler.hpp"
 
-EntityHandler::EntityHandler() {}
+EntityHandler::EntityHandler() : m_system_handler(NULL) {}
 
 EntityHandler::~EntityHandler() noexcept {
   std::map<EntityID, Entity*>::iterator it;
@@ -10,6 +10,7 @@ EntityHandler::~EntityHandler() noexcept {
 }
 
 EntityID EntityHandler::addEntity(luabridge::LuaRef& object) {
+  assert(m_system_handler != NULL);
   lua_State* lua_state = object.state();
   Entity* entity = new Entity();
   EntityID new_id = m_map.insert(entity);
@@ -32,6 +33,8 @@ EntityID EntityHandler::addEntity(luabridge::LuaRef& object) {
   }
 
   object.pop();
+
+  m_system_handler->addEntity(entity->components);
 
   return new_id;
 }

@@ -1,24 +1,18 @@
 #include "../inc/GameEngine.hpp"
 
 GameEngine::GameEngine() {
-  m_texture_handler = new TextureHandler();
-  m_entity_handler = new EntityHandler();
-  m_file_manager = new FileManager();
   m_lua_state = luaL_newstate();
 
-  ServiceLocator::provide(m_file_manager);
-  ServiceLocator::provide(m_texture_handler);
+  m_entity_handler.provide(&m_system_handler);
+
+  ServiceLocator::provide(&m_file_manager);
+  ServiceLocator::provide(&m_texture_handler);
 }
 
-GameEngine::~GameEngine() noexcept {
-  delete m_texture_handler;
-  delete m_entity_handler;
-  delete m_file_manager;
-  lua_close(m_lua_state);
-}
+GameEngine::~GameEngine() noexcept { lua_close(m_lua_state); }
 
 void GameEngine::initialize(const std::string& config_path) {
-  m_texture_handler->addAtlas("assets/graphics/hero.png", 0);
+  m_texture_handler.addAtlas("assets/graphics/hero.png", 0);
 }
 
 int GameEngine::main_loop() {
@@ -29,7 +23,7 @@ int GameEngine::main_loop() {
 
   std::cout << "Loading entity hero..."
             << "\n";
-  EntityID e_id = m_entity_handler->addEntity(entity);
+  EntityID e_id = m_entity_handler.addEntity(entity);
 
   std::cout << "Deleting EntityHandler..."
             << "\n";

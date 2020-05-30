@@ -13,6 +13,7 @@ set(SRCS
     cpp/GameEngine.cpp
     cpp/main.cpp
     cpp/RenderComponent.cpp
+    cpp/RenderSystem.cpp
     cpp/ServiceLocator.cpp
     cpp/TextureHandler.cpp
     cpp/TransformComponent.cpp
@@ -29,7 +30,10 @@ set(HEADERS
     inc/Geometry.hpp
     inc/ServiceLocator.hpp
     inc/RenderComponent.hpp
+    inc/RenderSystem.hpp
     inc/SmartMap.hpp
+    inc/System.hpp
+    inc/SystemHandler.hpp
     inc/TextureHandler.hpp
     inc/TransformComponent.hpp
     inc/Vector2D.hpp

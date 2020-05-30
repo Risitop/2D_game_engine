@@ -2,6 +2,7 @@
 
 #include "ComponentHandler.hpp"
 #include "SmartMap.hpp"
+#include "SystemHandler.hpp"
 
 typedef unsigned int EntityID;
 
@@ -36,9 +37,12 @@ class EntityHandler {
   Entity *getEntity(EntityID id);
   void removeEntity(EntityID id);
 
+  void provide(SystemHandler *system) { m_system_handler = system; }
+
  protected:
  private:
   SmartMap<EntityID, Entity *> m_map;
   ComponentHandler m_component_handler;
   void freeEntity(EntityID id);
+  SystemHandler *m_system_handler;
 };

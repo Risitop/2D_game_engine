@@ -285,6 +285,33 @@ cpp/RenderComponent.cpp.s:
 	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/RenderComponent.cpp.s
 .PHONY : cpp/RenderComponent.cpp.s
 
+cpp/RenderSystem.o: cpp/RenderSystem.cpp.o
+
+.PHONY : cpp/RenderSystem.o
+
+# target to build an object file
+cpp/RenderSystem.cpp.o:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/RenderSystem.cpp.o
+.PHONY : cpp/RenderSystem.cpp.o
+
+cpp/RenderSystem.i: cpp/RenderSystem.cpp.i
+
+.PHONY : cpp/RenderSystem.i
+
+# target to preprocess a source file
+cpp/RenderSystem.cpp.i:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/RenderSystem.cpp.i
+.PHONY : cpp/RenderSystem.cpp.i
+
+cpp/RenderSystem.s: cpp/RenderSystem.cpp.s
+
+.PHONY : cpp/RenderSystem.s
+
+# target to generate assembly for a file
+cpp/RenderSystem.cpp.s:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/RenderSystem.cpp.s
+.PHONY : cpp/RenderSystem.cpp.s
+
 cpp/ServiceLocator.o: cpp/ServiceLocator.cpp.o
 
 .PHONY : cpp/ServiceLocator.o
@@ -447,6 +474,9 @@ help:
 	@echo "... cpp/RenderComponent.o"
 	@echo "... cpp/RenderComponent.i"
 	@echo "... cpp/RenderComponent.s"
+	@echo "... cpp/RenderSystem.o"
+	@echo "... cpp/RenderSystem.i"
+	@echo "... cpp/RenderSystem.s"
 	@echo "... cpp/ServiceLocator.o"
 	@echo "... cpp/ServiceLocator.i"
 	@echo "... cpp/ServiceLocator.s"
