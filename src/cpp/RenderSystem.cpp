@@ -68,9 +68,14 @@ void RenderSystem::update(sf::Time dt) {
 }
 
 void RenderSystem::insertSortedEntity(const RenderSystemEntity& entity) {
-  std::cout << "Inserted a render entity."
-            << "\n";
+  int zindex = entity.m_render->zIndex();
   m_entities.push_back(entity);
+  size_t pos = m_entities.size() - 1;
+  while (pos > 0 && m_entities[pos - 1].m_render->zIndex() > zindex) {
+    m_entities[pos] = m_entities[pos - 1];
+    pos--;
+  }
+  m_entities[pos] = entity;
 }
 
 void RenderSystem::addEntityVertices(const RenderSystemEntity& entity) {

@@ -30,7 +30,12 @@ class RenderSystemEntity : public SystemEntity {
   virtual ~RenderSystemEntity() noexcept {}
 
   //! Copy assignment operator
-  RenderSystemEntity &operator=(const RenderSystemEntity &other) = delete;
+  RenderSystemEntity &operator=(const RenderSystemEntity &other) {
+    m_render = other.m_render;
+    m_transform = other.m_transform;
+    m_animated = other.m_animated;
+    return *this;
+  }
 
   //! Move assignment operator
   RenderSystemEntity &operator=(RenderSystemEntity &&other) noexcept = delete;
