@@ -8,6 +8,7 @@ GameEngine::GameEngine() : m_event_handler(&m_application) {
   ServiceLocator::provide(&m_file_manager);
   ServiceLocator::provide(&m_texture_handler);
   ServiceLocator::provide(&m_event_handler);
+  ServiceLocator::provide(&m_application);
 }
 
 GameEngine::~GameEngine() noexcept { lua_close(m_lua_state); }
@@ -29,12 +30,16 @@ int GameEngine::main_loop() {
             << "\n";
   EntityID e_id = m_entity_handler.addEntity(entity);
 
+  sf::Clock clock;
   while (m_application.isOpen()) {
     m_event_handler.listenEvents();
 
     if (m_event_handler.closed()) {
       break;
     }
+
+    sf::Time elapsed = clock.restart();
+    m_system_handler.update(elapsed);
 
     m_application.update();
   }

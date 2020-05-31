@@ -1,12 +1,8 @@
 #include "../inc/RenderSystem.hpp"
 
-RenderSystem::RenderSystem() {}
+RenderSystem::RenderSystem() { m_vertex_array.setPrimitiveType(sf::Quads); }
 
-RenderSystem::~RenderSystem() noexcept {
-  for (RenderSystemEntity* entity : m_entities) {
-    delete entity;
-  }
-}
+RenderSystem::~RenderSystem() noexcept {}
 
 bool RenderSystem::addEntity(std::vector<Component*> entity) {
   AnimatedComponent* animated = NULL;
@@ -34,7 +30,8 @@ bool RenderSystem::addEntity(std::vector<Component*> entity) {
   }
 
   if (transform != NULL && render != NULL) {
-    m_entities.push_back(new RenderSystemEntity(render, transform, animated));
+    RenderSystemEntity entity(render, transform, animated);
+    insertSortedEntity(entity);
     std::cout << "Render entity added."
               << "\n";
     return true;
@@ -43,4 +40,58 @@ bool RenderSystem::addEntity(std::vector<Component*> entity) {
   return false;
 }
 
-void RenderSystem::update() {}
+void RenderSystem::update(sf::Time dt) {
+  m_vertex_array.clear();
+  Application* app = ServiceLocator::App();
+  sf::RenderStates states;
+
+  // Custom batching
+  // m_entities must be ordered by z-order
+  states.texture = nullptr;
+  for (RenderSystemEntity& entity : m_entities) {
+    sf::Texture* e_tex = entity.m_render->getTexture();
+
+    if (entity.isAnimated()) {
+      entity.m_animated->update(dt);
+      entity.m_render->setFrame(entity.m_animated->frame());
+    }
+
+    if (e_tex != states.texture) {
+      // Render
+      app->draw(m_vertex_array, states);
+      m_vertex_array.clear();
+      states.texture = e_tex;
+    }
+    addEntityVertices(entity);
+  }
+  app->draw(m_vertex_array, states);
+}
+
+void RenderSystem::insertSortedEntity(const RenderSystemEntity& entity) {
+  std::cout << "Inserted a render entity."
+            << "\n";
+  m_entities.push_back(entity);
+}
+
+void RenderSystem::addEntityVertices(const RenderSystemEntity& entity) {
+  sf::IntRect frame = entity.m_render->getFrame();
+  sf::Vertex vertices[4];
+  entity.m_transform->getVertices(frame, vertices);
+
+  sf::Vertex v00 = vertices[0];
+  v00.texCoords = sf::Vector2f(frame.left, frame.top);
+  m_vertex_array.append(v00);
+
+  sf::Vertex v10 = vertices[1];
+  v10.texCoords = sf::Vector2f(frame.left + frame.width, frame.top);
+  m_vertex_array.append(v10);
+
+  sf::Vertex v01 = vertices[2];
+  v01.texCoords =
+      sf::Vector2f(frame.left + frame.width, frame.top + frame.height);
+  m_vertex_array.append(v01);
+
+  sf::Vertex v11 = vertices[3];
+  v11.texCoords = sf::Vector2f(frame.left, frame.top + frame.height);
+  m_vertex_array.append(v11);
+}

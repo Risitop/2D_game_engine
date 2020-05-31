@@ -1,7 +1,10 @@
 #pragma once
 
+#include <SFML/Graphics/VertexArray.hpp>
+
 #include "AnimatedComponent.hpp"
 #include "RenderComponent.hpp"
+#include "ServiceLocator.hpp"
 #include "System.hpp"
 #include "TransformComponent.hpp"
 
@@ -15,7 +18,10 @@ class RenderSystemEntity : public SystemEntity {
       : m_render(render), m_transform(transform), m_animated(animated) {}
 
   //! Copy constructor
-  RenderSystemEntity(const RenderSystemEntity &other) = delete;  // TODO
+  RenderSystemEntity(const RenderSystemEntity &other)
+      : m_render(other.m_render),
+        m_transform(other.m_transform),
+        m_animated(other.m_animated) {}
 
   //! Move constructor
   RenderSystemEntity(RenderSystemEntity &&other) noexcept = delete;
@@ -59,9 +65,13 @@ class RenderSystem : public System {
   RenderSystem &operator=(RenderSystem &&other) noexcept;
 
   virtual bool addEntity(std::vector<Component *> entity);
-  virtual void update();
+  virtual void update(sf::Time dt);
 
  protected:
  private:
-  std::vector<RenderSystemEntity *> m_entities;
+  std::vector<RenderSystemEntity> m_entities;
+  sf::VertexArray m_vertex_array;
+
+  void insertSortedEntity(const RenderSystemEntity &entity);
+  void addEntityVertices(const RenderSystemEntity &entity);
 };

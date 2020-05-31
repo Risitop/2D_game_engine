@@ -6,6 +6,7 @@
 #include <SFML/Graphics/Vertex.hpp>
 
 #include "Component.hpp"
+#include "ServiceLocator.hpp"
 
 #define CT_DRAWABLE 1;
 

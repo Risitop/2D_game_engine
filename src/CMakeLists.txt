@@ -1,5 +1,5 @@
 # Nous voulons un cmake "récent" pour utiliser les dernières fonctionnalités
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.1)
 
 # Notre projet est étiqueté hello
 project(game_engine)

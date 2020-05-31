@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SFML/System/Clock.hpp>
+
 #include "Application.hpp"
 #include "EntityHandler.hpp"
 #include "EventHandler.hpp"

@@ -9,7 +9,7 @@
 template <typename T>
 class Vector2D : public sf::Vector2<T> {
  public:
-  Vector2D() : sf::Vector2<T>() {}
+  Vector2D() : sf::Vector2<T>(0, 0) {}
   Vector2D(T x, T y) : sf::Vector2<T>(x, y) {}
   Vector2D(const sf::Vector2<T> &v) : sf::Vector2<T>(v.x, v.y) {}
   ~Vector2D() {}

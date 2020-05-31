@@ -8,39 +8,61 @@ TransformComponent::TransformComponent()
       m_modified(true) {}
 
 TransformComponent::TransformComponent(float x, float y)
-    : TransformComponent() {
+    : m_position(0, 0),
+      m_scale(1, 1),
+      m_rotation(0),
+      m_transform(nullptr),
+      m_modified(true) {
   translate(Vector2D<float>(x, y));
 }
 
 TransformComponent::TransformComponent(float x, float y, float scale_x,
                                        float scale_y)
-    : TransformComponent() {
+    : m_position(0, 0),
+      m_scale(1, 1),
+      m_rotation(0),
+      m_transform(nullptr),
+      m_modified(true) {
   scale(Vector2D<float>(scale_x, scale_y));
   translate(Vector2D<float>(x, y));
 }
 
 TransformComponent::TransformComponent(float x, float y, float scale_x,
                                        float scale_y, float rotation)
-    : TransformComponent() {
+    : m_position(0, 0),
+      m_scale(1, 1),
+      m_rotation(0),
+      m_transform(nullptr),
+      m_modified(true) {
   rotate(rotation);
   scale(Vector2D<float>(scale_x, scale_y));
   translate(Vector2D<float>(x, y));
 }
 
 TransformComponent::TransformComponent(const TransformComponent& other)
-    : TransformComponent() {
+    : m_position(0, 0),
+      m_scale(1, 1),
+      m_rotation(0),
+      m_transform(nullptr),
+      m_modified(true) {
   rotate(other.rotation());
   scale(Vector2D<float>(other.scaleX(), other.scaleY()));
   translate(Vector2D<float>(other.x(), other.y()));
 }
 
 TransformComponent::TransformComponent(const luabridge::LuaRef& object)
-    : m_position(0, 0), m_scale(0, 0), m_rotation(0) {
+    : m_position(0, 0),
+      m_scale(1, 1),
+      m_rotation(0),
+      m_transform(nullptr),
+      m_modified(true) {
   loadFromLua(object);
 }
 
 TransformComponent::~TransformComponent() noexcept {
-  if (m_transform != nullptr) delete m_transform;
+  if (m_transform != nullptr) {
+    delete m_transform;
+  }
 }
 
 float TransformComponent::x() const { return m_position.getX(); }
@@ -167,6 +189,32 @@ sf::Transform* TransformComponent::transform() {
     m_modified = false;
   }
   return m_transform;
+}
+
+//! rect: frame
+void TransformComponent::getVertices(const sf::IntRect& rect, sf::Vertex* ret) {
+  // Centering frame
+  Vector2D<float> p00 = Vector2D<float>(-rect.width, -rect.height) * 0.5;
+  Vector2D<float> p10 = Vector2D<float>(rect.width, -rect.height) * 0.5;
+  Vector2D<float> p11 = Vector2D<float>(rect.width, rect.height) * 0.5;
+  Vector2D<float> p01 = Vector2D<float>(-rect.width, rect.height) * 0.5;
+
+  ret[0] = sf::Vertex(transformVector(p00));
+  ret[1] = sf::Vertex(transformVector(p10));
+  ret[2] = sf::Vertex(transformVector(p11));
+  ret[3] = sf::Vertex(transformVector(p01));
+}
+
+Vector2D<float> TransformComponent::transformVector(const Vector2D<float>& v) {
+  Vector2D<float> point(v);
+
+  if (m_rotation != 0) {
+    point.setX(v.dot(Vector2D<float>(cos(m_rotation), -sin(m_rotation))));
+    point.setY(v.dot(Vector2D<float>(sin(m_rotation), cos(m_rotation))));
+  }
+  point *= m_scale;
+  point += m_position;
+  return point;
 }
 
 std::ostream& operator<<(std::ostream& stream,

@@ -33,7 +33,7 @@ sf::Sprite RenderComponent::getSprite() const { return sf::Sprite(m_sprite); }
 
 void RenderComponent::setZIndex(int index) { m_zIndex = index; }
 
-void RenderComponent::setTexture(sf ::Texture* texture) {
+void RenderComponent::setTexture(sf::Texture* texture) {
   m_texture = texture;
   m_sprite.setTexture(*texture);
 }
@@ -51,6 +51,9 @@ void RenderComponent::loadFromLua(luabridge::LuaRef& object) {
   int w_rect = object["frame"]["w"].cast<int>();
   int h_rect = object["frame"]["h"].cast<int>();
   m_frame = sf::IntRect(x_rect, y_rect, w_rect, h_rect);
+
+  setTexture(
+      ServiceLocator::Texture()->getTexture(object["atlas_id"].cast<int>()));
 }
 
 std::ostream& operator<<(std::ostream& stream, RenderComponent& component) {

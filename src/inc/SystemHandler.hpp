@@ -34,9 +34,9 @@ class SystemHandler {
       system->addEntity(entity);
     }
   };
-  void update() {
+  void update(sf::Time dt) {
     for (System *system : m_systems) {
-      system->update();
+      system->update(dt);
     }
   }
 

@@ -11,5 +11,9 @@ void Application::initialize(int width, int height, std::string title) {
 
 void Application::update() {
   m_window.clear(sf::Color::Black);
+  for (RenderRequest& request : m_requests) {
+    m_window.draw(request.target, request.states);
+  }
   m_window.display();
+  m_requests.clear();
 }

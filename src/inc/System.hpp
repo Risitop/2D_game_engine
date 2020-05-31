@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SFML/System/Time.hpp>
+
 #include "Component.hpp"
 
 class SystemEntity {
@@ -47,7 +49,7 @@ class System {
   System &operator=(System &&other) noexcept = delete;
 
   virtual bool addEntity(std::vector<Component *> entity) = 0;
-  virtual void update() = 0;
+  virtual void update(sf::Time dt) = 0;
 
  protected:
  private:

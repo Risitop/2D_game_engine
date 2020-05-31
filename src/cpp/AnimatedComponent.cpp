@@ -4,7 +4,7 @@ AnimatedComponent::AnimatedComponent()
     : m_active_frame(0),
       m_frame_time(sf::Time::Zero),
       m_current_time(sf::Time::Zero),
-      m_paused(true),
+      m_paused(false),
       m_looped(true) {}
 
 AnimatedComponent::AnimatedComponent(const AnimatedComponent& other)
@@ -19,7 +19,7 @@ AnimatedComponent::AnimatedComponent(const AnimatedComponent& other)
 }
 
 AnimatedComponent::AnimatedComponent(luabridge::LuaRef& object)
-    : m_active_frame(0), m_current_time(sf::Time::Zero), m_paused(true) {
+    : m_active_frame(0), m_current_time(sf::Time::Zero), m_paused(false) {
   loadFromLua(object);
 }
 
@@ -47,7 +47,7 @@ void AnimatedComponent::setFrameTime(sf::Time frame_time) {
 void AnimatedComponent::setLooping(bool b) { m_looped = b; }
 
 void AnimatedComponent::loadFromLua(luabridge::LuaRef& object) {
-  m_frame_time = sf::microseconds(object["frame_time"].cast<int>());
+  m_frame_time = sf::milliseconds(object["frame_time"].cast<int>());
   m_looped = object["looped"].cast<bool>();
   int n_frames = object["n_frames"].cast<int>();
   for (int i = 0; i < n_frames; i++) {

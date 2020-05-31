@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics/Transform.hpp>
+#include <SFML/Graphics/VertexArray.hpp>
 
 #include "Component.hpp"
 #include "Geometry.hpp"
@@ -56,6 +57,8 @@ class TransformComponent : public Component {
   void rotate(float angle);
 
   sf::Transform *transform();
+  void getVertices(const sf::IntRect &frame, sf::Vertex *ret);
+  Vector2D<float> transformVector(const Vector2D<float> &v);
 
  protected:
  private:
