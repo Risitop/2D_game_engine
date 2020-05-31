@@ -5,6 +5,7 @@
 
 #include "Component.hpp"
 #include "Geometry.hpp"
+#include "Matrix2D.hpp"
 #include "Vector2D.hpp"
 
 #define CT_TRANSFORM 2
@@ -56,9 +57,7 @@ class TransformComponent : public Component {
   void scale(float z);
   void rotate(float angle);
 
-  sf::Transform *transform();
   void getVertices(const sf::IntRect &frame, sf::Vertex *ret);
-  Vector2D<float> transformVector(const Vector2D<float> &v);
 
  protected:
  private:
@@ -66,8 +65,8 @@ class TransformComponent : public Component {
   Vector2D<float> m_scale;
   Vector2D<float> m_origin;
   float m_rotation;  // In radians !
-  sf::Transform *m_transform;
   bool m_modified;
+  Matrix2D<float> m_transform;
 };
 
 std::ostream &operator<<(std::ostream &stream,

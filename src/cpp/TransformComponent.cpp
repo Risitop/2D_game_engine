@@ -1,69 +1,41 @@
 #include "../inc/TransformComponent.hpp"
 
 TransformComponent::TransformComponent()
-    : m_position(0, 0),
-      m_scale(1, 1),
-      m_rotation(0),
-      m_transform(nullptr),
-      m_modified(true) {}
+    : m_position(0, 0), m_scale(1, 1), m_rotation(0), m_modified(true) {}
 
 TransformComponent::TransformComponent(float x, float y)
-    : m_position(0, 0),
-      m_scale(1, 1),
-      m_rotation(0),
-      m_transform(nullptr),
-      m_modified(true) {
+    : m_position(0, 0), m_scale(1, 1), m_rotation(0), m_modified(true) {
   translate(Vector2D<float>(x, y));
 }
 
 TransformComponent::TransformComponent(float x, float y, float scale_x,
                                        float scale_y)
-    : m_position(0, 0),
-      m_scale(1, 1),
-      m_rotation(0),
-      m_transform(nullptr),
-      m_modified(true) {
+    : m_position(0, 0), m_scale(1, 1), m_rotation(0), m_modified(true) {
   scale(Vector2D<float>(scale_x, scale_y));
   translate(Vector2D<float>(x, y));
 }
 
 TransformComponent::TransformComponent(float x, float y, float scale_x,
                                        float scale_y, float rotation)
-    : m_position(0, 0),
-      m_scale(1, 1),
-      m_rotation(0),
-      m_transform(nullptr),
-      m_modified(true) {
+    : m_position(0, 0), m_scale(1, 1), m_rotation(0), m_modified(true) {
   rotate(rotation);
   scale(Vector2D<float>(scale_x, scale_y));
   translate(Vector2D<float>(x, y));
 }
 
 TransformComponent::TransformComponent(const TransformComponent& other)
-    : m_position(0, 0),
-      m_scale(1, 1),
-      m_rotation(0),
-      m_transform(nullptr),
-      m_modified(true) {
+    : m_position(0, 0), m_scale(1, 1), m_rotation(0), m_modified(true) {
   rotate(other.rotation());
   scale(Vector2D<float>(other.scaleX(), other.scaleY()));
   translate(Vector2D<float>(other.x(), other.y()));
 }
 
 TransformComponent::TransformComponent(const luabridge::LuaRef& object)
-    : m_position(0, 0),
-      m_scale(1, 1),
-      m_rotation(0),
-      m_transform(nullptr),
-      m_modified(true) {
+    : m_position(0, 0), m_scale(1, 1), m_rotation(0), m_modified(true) {
   loadFromLua(object);
 }
 
-TransformComponent::~TransformComponent() noexcept {
-  if (m_transform != nullptr) {
-    delete m_transform;
-  }
-}
+TransformComponent::~TransformComponent() noexcept {}
 
 float TransformComponent::x() const { return m_position.getX(); }
 
@@ -175,46 +147,31 @@ void TransformComponent::rotate(float angle) {
   m_modified = true;
 }
 
-sf::Transform* TransformComponent::transform() {
-  if (m_modified) {
-    if (m_transform != nullptr) delete m_transform;
-    m_transform = new sf::Transform();
-    if (m_rotation != 0) {
-      m_transform->translate(-m_origin.getX(), -m_origin.getY());
-      m_transform->rotate(rotation() / M_PI * 180);
-      m_transform->translate(m_origin.getX(), m_origin.getY());
-    }
-    m_transform->scale(scaleX(), scaleY());
-    m_transform->translate(x(), y());
-    m_modified = false;
-  }
-  return m_transform;
-}
-
 //! rect: frame
 void TransformComponent::getVertices(const sf::IntRect& rect, sf::Vertex* ret) {
+  // Recalculating transform matrix
+  if (m_modified) {
+    float c = cos(m_rotation);
+    float s = sin(m_rotation);
+    float sx = m_scale.getX();
+    float sy = m_scale.getY();
+    m_transform.coords[0] = c * sx;
+    m_transform.coords[1] = -s * sx;
+    m_transform.coords[2] = s * sy;
+    m_transform.coords[3] = c * sy;
+    m_modified = false;
+  }
+
   // Centering frame
   Vector2D<float> p00 = Vector2D<float>(-rect.width, -rect.height) * 0.5;
   Vector2D<float> p10 = Vector2D<float>(rect.width, -rect.height) * 0.5;
   Vector2D<float> p11 = Vector2D<float>(rect.width, rect.height) * 0.5;
   Vector2D<float> p01 = Vector2D<float>(-rect.width, rect.height) * 0.5;
 
-  ret[0] = sf::Vertex(transformVector(p00));
-  ret[1] = sf::Vertex(transformVector(p10));
-  ret[2] = sf::Vertex(transformVector(p11));
-  ret[3] = sf::Vertex(transformVector(p01));
-}
-
-Vector2D<float> TransformComponent::transformVector(const Vector2D<float>& v) {
-  Vector2D<float> point(v);
-
-  if (m_rotation != 0) {
-    point.setX(v.dot(Vector2D<float>(cos(m_rotation), -sin(m_rotation))));
-    point.setY(v.dot(Vector2D<float>(sin(m_rotation), cos(m_rotation))));
-  }
-  point *= m_scale;
-  point += m_position;
-  return point;
+  ret[0] = sf::Vertex(m_transform.dot(p00) + m_position);
+  ret[1] = sf::Vertex(m_transform.dot(p10) + m_position);
+  ret[2] = sf::Vertex(m_transform.dot(p11) + m_position);
+  ret[3] = sf::Vertex(m_transform.dot(p01) + m_position);
 }
 
 std::ostream& operator<<(std::ostream& stream,

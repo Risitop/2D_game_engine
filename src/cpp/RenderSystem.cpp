@@ -56,6 +56,10 @@ void RenderSystem::update(sf::Time dt) {
       entity.m_render->setFrame(entity.m_animated->frame());
     }
 
+    entity.m_transform->rotate(0.1);
+    entity.m_transform->scale(1.001);
+    entity.m_transform->translate(Vector2D<float>(0.02, 0.01));
+
     if (e_tex != states.texture) {
       // Render
       app->draw(m_vertex_array, states);
