@@ -447,33 +447,6 @@ cpp/TransformComponent.cpp.s:
 	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/TransformComponent.cpp.s
 .PHONY : cpp/TransformComponent.cpp.s
 
-cpp/Vector2D.o: cpp/Vector2D.cpp.o
-
-.PHONY : cpp/Vector2D.o
-
-# target to build an object file
-cpp/Vector2D.cpp.o:
-	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/Vector2D.cpp.o
-.PHONY : cpp/Vector2D.cpp.o
-
-cpp/Vector2D.i: cpp/Vector2D.cpp.i
-
-.PHONY : cpp/Vector2D.i
-
-# target to preprocess a source file
-cpp/Vector2D.cpp.i:
-	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/Vector2D.cpp.i
-.PHONY : cpp/Vector2D.cpp.i
-
-cpp/Vector2D.s: cpp/Vector2D.cpp.s
-
-.PHONY : cpp/Vector2D.s
-
-# target to generate assembly for a file
-cpp/Vector2D.cpp.s:
-	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/Vector2D.cpp.s
-.PHONY : cpp/Vector2D.cpp.s
-
 cpp/main.o: cpp/main.cpp.o
 
 .PHONY : cpp/main.o
@@ -546,9 +519,6 @@ help:
 	@echo "... cpp/TransformComponent.o"
 	@echo "... cpp/TransformComponent.i"
 	@echo "... cpp/TransformComponent.s"
-	@echo "... cpp/Vector2D.o"
-	@echo "... cpp/Vector2D.i"
-	@echo "... cpp/Vector2D.s"
 	@echo "... cpp/main.o"
 	@echo "... cpp/main.i"
 	@echo "... cpp/main.s"

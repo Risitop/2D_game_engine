@@ -19,7 +19,6 @@ set(SRCS
     cpp/ServiceLocator.cpp
     cpp/TextureHandler.cpp
     cpp/TransformComponent.cpp
-    cpp/Vector2D.cpp
     )
     
 set(HEADERS
