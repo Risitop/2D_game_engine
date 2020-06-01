@@ -14,6 +14,8 @@ set(SRCS
     cpp/FileManager.cpp
     cpp/GameEngine.cpp
     cpp/main.cpp
+    cpp/MotionComponent.cpp
+    cpp/PhysicsSystem.cpp
     cpp/RenderComponent.cpp
     cpp/RenderSystem.cpp
     cpp/ServiceLocator.cpp
@@ -31,9 +33,12 @@ set(HEADERS
     inc/FileManager.hpp
     inc/GameEngine.hpp
     inc/Geometry.hpp
-    inc/ServiceLocator.hpp
+    inc/Matrix2D.hpp
+    inc/MotionComponent.hpp
+    inc/PhysicsSystem.hpp
     inc/RenderComponent.hpp
     inc/RenderSystem.hpp
+    inc/ServiceLocator.hpp
     inc/SmartMap.hpp
     inc/System.hpp
     inc/SystemHandler.hpp

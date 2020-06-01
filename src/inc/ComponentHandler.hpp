@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "AnimatedComponent.hpp"
+#include "MotionComponent.hpp"
 #include "RenderComponent.hpp"
 #include "SmartMap.hpp"
 #include "TransformComponent.hpp"
@@ -43,6 +44,9 @@ class ComponentHandler {
     switch (type) {
       case AnimatedComponent::ID:
         component = new AnimatedComponent(object);
+        break;
+      case MotionComponent::ID:
+        component = new MotionComponent(object);
         break;
       case RenderComponent::ID:
         component = new RenderComponent(object);

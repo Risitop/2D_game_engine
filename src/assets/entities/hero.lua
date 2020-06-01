@@ -20,6 +20,13 @@ Entity = {
       }
    },
 
+   MotionComponent = {
+      dx = 0.1,
+      dy = 0,
+      ddx = 0.0003,
+      ddy = 0
+   },
+
    RenderComponent = {
       zIndex = 0,
       atlas_id = 0,

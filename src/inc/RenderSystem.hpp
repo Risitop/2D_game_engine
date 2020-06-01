@@ -18,13 +18,13 @@ class RenderSystemEntity : public SystemEntity {
       : m_render(render), m_transform(transform), m_animated(animated) {}
 
   //! Copy constructor
-  RenderSystemEntity(const RenderSystemEntity &other)
+  RenderSystemEntity(const RenderSystemEntity &other) = delete;
+
+  //! Move constructor
+  RenderSystemEntity(RenderSystemEntity &&other) noexcept
       : m_render(other.m_render),
         m_transform(other.m_transform),
         m_animated(other.m_animated) {}
-
-  //! Move constructor
-  RenderSystemEntity(RenderSystemEntity &&other) noexcept = delete;
 
   //! Destructor
   virtual ~RenderSystemEntity() noexcept {}
@@ -38,7 +38,12 @@ class RenderSystemEntity : public SystemEntity {
   }
 
   //! Move assignment operator
-  RenderSystemEntity &operator=(RenderSystemEntity &&other) noexcept = delete;
+  RenderSystemEntity &operator=(RenderSystemEntity &&other) noexcept {
+    m_render = other.m_render;
+    m_transform = other.m_transform;
+    m_animated = other.m_animated;
+    return *this;
+  }
 
   bool isAnimated() { return m_animated != NULL; }
 
@@ -77,6 +82,6 @@ class RenderSystem : public System {
   std::vector<RenderSystemEntity> m_entities;
   sf::VertexArray m_vertex_array;
 
-  void insertSortedEntity(const RenderSystemEntity &entity);
+  void insertSortedEntity(RenderSystemEntity &&entity);
   void addEntityVertices(const RenderSystemEntity &entity);
 };

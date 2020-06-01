@@ -3,12 +3,16 @@
 #include <vector>
 
 #include "Component.hpp"
+#include "PhysicsSystem.hpp"
 #include "RenderSystem.hpp"
 
 class SystemHandler {
  public:
   //! Default constructor
-  SystemHandler() { m_systems.push_back(new RenderSystem()); }
+  SystemHandler() {
+    m_systems.push_back(new PhysicsSystem());
+    m_systems.push_back(new RenderSystem());
+  }
 
   //! Copy constructor
   SystemHandler(const SystemHandler &other) = delete;

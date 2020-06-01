@@ -5,6 +5,7 @@ ComponentHandler::ComponentHandler() {
   m_s2c["AnimatedComponent"] = AnimatedComponent::ID;
   m_s2c["RenderComponent"] = RenderComponent::ID;
   m_s2c["TransformComponent"] = TransformComponent::ID;
+  m_s2c["MotionComponent"] = MotionComponent::ID;
 }
 
 ComponentHandler::~ComponentHandler() noexcept {

@@ -5,9 +5,9 @@ RenderSystem::RenderSystem() { m_vertex_array.setPrimitiveType(sf::Quads); }
 RenderSystem::~RenderSystem() noexcept {}
 
 bool RenderSystem::addEntity(std::vector<Component*> entity) {
-  AnimatedComponent* animated = NULL;
-  RenderComponent* render = NULL;
-  TransformComponent* transform = NULL;
+  AnimatedComponent* animated = nullptr;
+  RenderComponent* render = nullptr;
+  TransformComponent* transform = nullptr;
 
   for (Component* component : entity) {
     AnimatedComponent* tmp_a = dynamic_cast<AnimatedComponent*>(component);
@@ -29,9 +29,9 @@ bool RenderSystem::addEntity(std::vector<Component*> entity) {
     }
   }
 
-  if (transform != NULL && render != NULL) {
-    RenderSystemEntity entity(render, transform, animated);
-    insertSortedEntity(entity);
+  if (transform != nullptr && render != nullptr) {
+    RenderSystemEntity render_entity(render, transform, animated);
+    insertSortedEntity(std::move(render_entity));
     std::cout << "Render entity added."
               << "\n";
     return true;
@@ -56,10 +56,6 @@ void RenderSystem::update(sf::Time dt) {
       entity.m_render->setFrame(entity.m_animated->frame());
     }
 
-    entity.m_transform->rotate(0.1);
-    entity.m_transform->scale(1.001);
-    entity.m_transform->translate(Vector2D<float>(0.02, 0.01));
-
     if (e_tex != states.texture) {
       // Render
       app->draw(m_vertex_array, states);
@@ -71,9 +67,9 @@ void RenderSystem::update(sf::Time dt) {
   app->draw(m_vertex_array, states);
 }
 
-void RenderSystem::insertSortedEntity(const RenderSystemEntity& entity) {
+void RenderSystem::insertSortedEntity(RenderSystemEntity&& entity) {
   int zindex = entity.m_render->zIndex();
-  m_entities.push_back(entity);
+  m_entities.push_back(std::move(entity));
   size_t pos = m_entities.size() - 1;
   while (pos > 0 && m_entities[pos - 1].m_render->zIndex() > zindex) {
     m_entities[pos] = m_entities[pos - 1];

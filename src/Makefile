@@ -312,6 +312,60 @@ cpp/GameEngine.cpp.s:
 	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/GameEngine.cpp.s
 .PHONY : cpp/GameEngine.cpp.s
 
+cpp/MotionComponent.o: cpp/MotionComponent.cpp.o
+
+.PHONY : cpp/MotionComponent.o
+
+# target to build an object file
+cpp/MotionComponent.cpp.o:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/MotionComponent.cpp.o
+.PHONY : cpp/MotionComponent.cpp.o
+
+cpp/MotionComponent.i: cpp/MotionComponent.cpp.i
+
+.PHONY : cpp/MotionComponent.i
+
+# target to preprocess a source file
+cpp/MotionComponent.cpp.i:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/MotionComponent.cpp.i
+.PHONY : cpp/MotionComponent.cpp.i
+
+cpp/MotionComponent.s: cpp/MotionComponent.cpp.s
+
+.PHONY : cpp/MotionComponent.s
+
+# target to generate assembly for a file
+cpp/MotionComponent.cpp.s:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/MotionComponent.cpp.s
+.PHONY : cpp/MotionComponent.cpp.s
+
+cpp/PhysicsSystem.o: cpp/PhysicsSystem.cpp.o
+
+.PHONY : cpp/PhysicsSystem.o
+
+# target to build an object file
+cpp/PhysicsSystem.cpp.o:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/PhysicsSystem.cpp.o
+.PHONY : cpp/PhysicsSystem.cpp.o
+
+cpp/PhysicsSystem.i: cpp/PhysicsSystem.cpp.i
+
+.PHONY : cpp/PhysicsSystem.i
+
+# target to preprocess a source file
+cpp/PhysicsSystem.cpp.i:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/PhysicsSystem.cpp.i
+.PHONY : cpp/PhysicsSystem.cpp.i
+
+cpp/PhysicsSystem.s: cpp/PhysicsSystem.cpp.s
+
+.PHONY : cpp/PhysicsSystem.s
+
+# target to generate assembly for a file
+cpp/PhysicsSystem.cpp.s:
+	$(MAKE) -f CMakeFiles/game_engine.dir/build.make CMakeFiles/game_engine.dir/cpp/PhysicsSystem.cpp.s
+.PHONY : cpp/PhysicsSystem.cpp.s
+
 cpp/RenderComponent.o: cpp/RenderComponent.cpp.o
 
 .PHONY : cpp/RenderComponent.o
@@ -504,6 +558,12 @@ help:
 	@echo "... cpp/GameEngine.o"
 	@echo "... cpp/GameEngine.i"
 	@echo "... cpp/GameEngine.s"
+	@echo "... cpp/MotionComponent.o"
+	@echo "... cpp/MotionComponent.i"
+	@echo "... cpp/MotionComponent.s"
+	@echo "... cpp/PhysicsSystem.o"
+	@echo "... cpp/PhysicsSystem.i"
+	@echo "... cpp/PhysicsSystem.s"
 	@echo "... cpp/RenderComponent.o"
 	@echo "... cpp/RenderComponent.i"
 	@echo "... cpp/RenderComponent.s"
