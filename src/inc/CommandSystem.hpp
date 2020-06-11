@@ -4,6 +4,8 @@
 #include "System.hpp"
 
 class CommandSystemEntity : public SystemEntity {
+  friend class CommandSystem;
+
  public:
   //! Default constructor
   CommandSystemEntity();
@@ -48,9 +50,14 @@ class CommandSystem : public System {
   //! Move assignment operator
   CommandSystem &operator=(CommandSystem &&other) noexcept;
 
-  void update(sf::Time dt) {}
+  void update(sf::Time dt) {
+    for (CommandSystemEntity *entity : m_entities) {
+      entity->m_command->execute();
+      entity->m_command->clear();
+    }
+  }
 
  protected:
  private:
-  Command
+  std::vector<CommandSystemEntity *> m_entities;
 };

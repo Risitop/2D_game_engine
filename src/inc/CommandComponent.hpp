@@ -1,11 +1,13 @@
 #pragma once
 
+#include "Component.hpp"
 #include "ComponentHandler.hpp"
+#include "MotionComponent.hpp"
 
 class Command {
  public:
   //! Default constructor
-  Command() {}
+  Command(Component *target) : m_target(target) {}
 
   //! Copy constructor
   Command(const Command &other) {}
@@ -17,24 +19,26 @@ class Command {
   virtual ~Command() noexcept {}
 
   //! Copy assignment operator
-  Command &operator=(const Command &other) {}
+  Command &operator=(const Command &other) = delete; 
 
   //! Move assignment operator
   Command &operator=(Command &&other) noexcept = delete;
 
-  static void execute(Component *component) {}
+  virtual void execute() = 0;
 
  protected:
+  Component *m_target;
+
  private:
 };
 
 class JumpCommand : public Command {
  public:
   //! Default constructor
-  JumpCommand() {}
+  JumpCommand(MotionComponent *target) : Command(target) {}
 
   //! Copy constructor
-  JumpCommand(const JumpCommand &other) {}
+  JumpCommand(const JumpCommand &other) : Command(other.m_target) {}
 
   //! Move constructor
   JumpCommand(JumpCommand &&other) noexcept = delete;
@@ -43,13 +47,14 @@ class JumpCommand : public Command {
   virtual ~JumpCommand() noexcept {}
 
   //! Copy assignment operator
-  JumpCommand &operator=(const JumpCommand &other) {}
+  JumpCommand &operator=(const JumpCommand &other) = delete; 
 
   //! Move assignment operator
   JumpCommand &operator=(JumpCommand &&other) noexcept = delete;
 
-  static void execute(MotionComponent *component) {
-    component->addVelocity(Vector2D<float>(0, -50));
+  virtual void execute() {
+    MotionComponent *target = static_cast<MotionComponent *>(m_target);
+    target->addVelocity(Vector2D<float>(0, -50));
   }
 
  protected:
@@ -76,6 +81,12 @@ class CommandComponent : public Component {
   //! Move assignment operator
   CommandComponent &operator=(CommandComponent &&other) noexcept;
 
+  void execute() {
+    for (Command* command : m_commands) {
+      command->execute();
+    }
+  }
+
   void addCommand(Command *command) { m_commands.push_back(command); }
   void clear() {
     for (Command *command : m_commands) {
@@ -88,3 +99,4 @@ class CommandComponent : public Component {
  private:
   std::vector<Command *> m_commands;
 };
+
